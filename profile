@@ -8,8 +8,13 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+
+export DISPLAY=:0.0
+export LIBGL_ALWAYS_INDIRECT=1
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
+    cd ~
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"
@@ -25,3 +30,7 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+     xterm-color|*-256color) color_prompt=yes;;
+esac

@@ -1,0 +1,5 @@
+# ensure that a non-login, non-interactive shell has a defined environment.
+# source ~/.profile
+if [[ "${DISPLAY}" -eq ":0" && ! -o LOGIN && -s "${$HOME}/.dotfiles/profile" ]]; then
+  source "${$HOME}/.dotfiles/profile"
+fi
